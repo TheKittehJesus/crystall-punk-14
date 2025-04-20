@@ -9,8 +9,10 @@ using Content.Shared.Actions;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Whitelist;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -34,6 +36,8 @@ public abstract partial class CP14SharedMagicSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     private EntityQuery<CP14MagicEnergyContainerComponent> _magicContainerQuery;
     private EntityQuery<CP14MagicEffectComponent> _magicEffectQuery;

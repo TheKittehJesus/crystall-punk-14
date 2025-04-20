@@ -18,3 +18,5 @@ cp14-magic-spell-need-somatic-component = You don't have your hands free.
 cp14-magic-spell-stamina-not-enough = You don't have the energy to do it.
 cp14-magic-staminacost = Stamina cost
 cp14-magic-spell-pacified = It could hurt someone!
+
+cp14-magic-spell-helded-item-not-valid = No suitable item in hand.

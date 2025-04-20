@@ -13,6 +13,7 @@ public abstract partial class CP14SharedMagicSystem
 {
     private void InitializeChecks()
     {
+        SubscribeLocalEvent<CP14MagicEffectHeldedItemBasedComponent, CP14CastMagicEffectAttemptEvent>(OnHeldedItemsCheck);
         SubscribeLocalEvent<CP14MagicEffectSomaticAspectComponent, CP14CastMagicEffectAttemptEvent>(OnSomaticCheck);
         SubscribeLocalEvent<CP14MagicEffectVerbalAspectComponent, CP14CastMagicEffectAttemptEvent>(OnVerbalCheck);
         SubscribeLocalEvent<CP14MagicEffectManaCostComponent, CP14CastMagicEffectAttemptEvent>(OnManaCheck);
@@ -24,6 +25,19 @@ public abstract partial class CP14SharedMagicSystem
         SubscribeLocalEvent<CP14MagicEffectVerbalAspectComponent, CP14MagicEffectConsumeResourceEvent>(OnVerbalAspectAfterCast);
         SubscribeLocalEvent<CP14MagicEffectEmotingComponent, CP14StartCastMagicEffectEvent>(OnEmoteStartCast);
         SubscribeLocalEvent<CP14MagicEffectEmotingComponent, CP14MagicEffectConsumeResourceEvent>(OnEmoteEndCast);
+    }
+
+    private void OnHeldedItemsCheck(Entity<CP14MagicEffectHeldedItemBasedComponent> ent, ref CP14CastMagicEffectAttemptEvent args)
+    {
+        var heldItems = _hands.EnumerateHeld(args.Performer);
+
+        foreach (var item in heldItems)
+        {
+            if (_whitelist.IsValid(ent.Comp.Whitelist, item))
+                return;
+        }
+        args.Cancel();
+        args.PushReason(Loc.GetString("cp14-magic-spell-helded-item-not-valid"));
     }
 
     /// <summary>

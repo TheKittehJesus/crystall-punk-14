@@ -9,8 +9,18 @@
     action: CP14ActionSpellKick
 
 - type: cp14Skill
-  id: CP14ActionSpellSprint
+  id: CP14ActionSpellParry
   skillUiPosition: 0, 2
+  tree: Atlethic
+  icon:
+    sprite: _CP14/Actions/Spells/physical.rsi
+    state: parry
+  effect: !type:AddAction
+    action: CP14ActionSpellParry
+
+- type: cp14Skill
+  id: CP14ActionSpellSprint
+  skillUiPosition: 0, 4
   tree: Atlethic
   icon:
     sprite: _CP14/Actions/Spells/physical.rsi
@@ -20,7 +30,7 @@
 
 - type: cp14Skill
   id: CP14ActionSpellSprintGoblin
-  skillUiPosition: 2, 2
+  skillUiPosition: 2, 4
   learnCost: 0
   tree: Atlethic
   icon:

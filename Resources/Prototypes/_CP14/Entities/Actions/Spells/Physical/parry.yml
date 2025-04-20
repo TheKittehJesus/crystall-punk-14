@@ -1,0 +1,43 @@
+- type: entity
+  id: CP14ActionSpellParry
+  name: Parry
+  description: You assume a defensive stance, covering yourself with a protective object, deflecting projectiles and knocking weapons out of the hands of your attackers.
+  components:
+  - type: Sprite
+    sprite: _CP14/Actions/Spells/physical.rsi
+    state: parry
+  - type: CP14MagicEffectCastSlowdown
+    speedMultiplier: 0.5
+  - type: CP14MagicEffectStaminaCost
+    stamina: 5
+  - type: CP14MagicEffect
+  - type: CP14MagicEffectCastingVisual
+    proto: CP14RuneParry
+  - type: InstantAction
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/rumble.ogg
+    icon:
+      sprite: _CP14/Actions/Spells/physical.rsi
+      state: parry
+    event: !type:CP14ToggleableInstantActionEvent
+      effectFrequency: 1
+      cooldown: 15
+      castTime: 3
+      hidden: true
+ 
+- type: entity
+  id: CP14RuneParry
+  parent: CP14BaseMagicRune
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: PointLight
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - state: shield_up
+      shader: unshaded
+  - type: EmitSoundOnSpawn
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/Eldritch/voidblink.ogg
