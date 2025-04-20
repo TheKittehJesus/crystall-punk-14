@@ -5,7 +5,6 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._CP14.MeleeWeapon.EntitySystems;
 
@@ -16,48 +15,19 @@ public sealed class CP14MeleeParrySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CP14MeleeParryComponent, MeleeHitEvent>(OnMeleeHit);
-        SubscribeLocalEvent<CP14MeleeParriableComponent, AttemptMeleeEvent>(OnMeleeParriableHitAttempt);
+        SubscribeLocalEvent<CP14MeleeParryComponent, AttackedEvent>(OnAttacked);
     }
 
-    private void OnMeleeParriableHitAttempt(Entity<CP14MeleeParriableComponent> ent, ref AttemptMeleeEvent args)
+    private void OnAttacked(Entity<CP14MeleeParryComponent> ent, ref AttackedEvent args)
     {
-        ent.Comp.LastMeleeHit = _timing.CurTime;
-    }
-
-    private void OnMeleeHit(Entity<CP14MeleeParryComponent> ent, ref MeleeHitEvent args)
-    {
-        if (args.HitEntities.Count != 1)
-            return;
-
-        var target = args.HitEntities[0];
-
-        var activeTargetHand = _hands.GetActiveHand(target);
-
-        if (activeTargetHand?.HeldEntity is null)
-            return;
-
-        var parriedWeapon = activeTargetHand.HeldEntity.Value;
-
-        if (!TryComp<CP14MeleeParriableComponent>(parriedWeapon, out var meleeParriable))
-            return;
-
-        if (ent.Comp.ParryPower < meleeParriable.NeedParryPower)
-            return;
-
-        if (_timing.CurTime > meleeParriable.LastMeleeHit + ent.Comp.ParryWindow)
-            return;
-
-        _hands.TryDrop(target, parriedWeapon);
-        _throwing.TryThrow(parriedWeapon, _random.NextAngle().ToWorldVec(), ent.Comp.ParryPower, target);
-        _popup.PopupEntity( Loc.GetString("cp14-successful-parry"), args.User, args.User);
-        _popup.PopupEntity( Loc.GetString("cp14-successful-parry"), args.HitEntities[0], args.HitEntities[0]);
-        _audio.PlayPvs(meleeParriable.ParrySound, parriedWeapon);
+        _hands.TryDrop(args.User, args.Used);
+        _throwing.TryThrow(args.Used, _random.NextAngle().ToWorldVec(), ent.Comp.ParryPower, args.User);
+        _popup.PopupPredicted( Loc.GetString("cp14-successful-parry"), args.User, args.User);
+        _audio.PlayPvs(ent.Comp.ParrySound, args.Used);
     }
 }

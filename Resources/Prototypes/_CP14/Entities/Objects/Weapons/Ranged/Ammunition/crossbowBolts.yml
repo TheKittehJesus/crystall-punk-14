@@ -4,6 +4,7 @@
   categories: [ ForkFiltered ]
   abstract: true
   components:
+  - type: Reflective
   - type: Item
     size: Tiny
     shape:

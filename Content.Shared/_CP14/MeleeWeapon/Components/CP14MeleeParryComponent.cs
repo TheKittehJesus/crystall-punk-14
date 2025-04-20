@@ -1,14 +1,16 @@
+using Robust.Shared.Audio;
+
 namespace Content.Shared._CP14.MeleeWeapon.Components;
 
 /// <summary>
-/// attacks with this item may knock CP14ParriableComponent items out of your hand on a hit
+/// An attack on this entity will knock the weapon out of the attacker's hands
 /// </summary>
 [RegisterComponent]
 public sealed partial class CP14MeleeParryComponent : Component
 {
     [DataField]
-    public TimeSpan ParryWindow = TimeSpan.FromSeconds(1f);
+    public float ParryPower = 3f;
 
     [DataField]
-    public float ParryPower = 1f;
+    public SoundSpecifier ParrySound = new SoundCollectionSpecifier("CP14Parry", AudioParams.Default.WithVariation(0.05f));
 }
