@@ -36,7 +36,7 @@
     mask: CP14ClothingMaskSinner
     pants: CP14ClothingPantsLoincloth
     belt1: CP14ModularIronDagger
-    belt2: CP14ModularIronDagger
+    belt: CP14ModularIronDagger
 
 - type: startingGear
   id: CP14MobSkeletonArcherT1
@@ -78,7 +78,7 @@
     mask: CP14ClothingMaskBoneHornedMask
     pants: CP14ClothingPantsLoincloth
     belt1: CP14ModularIronDaggerTundra
-    belt2: CP14ModularIronDaggerAgony
+    belt: CP14ModularIronDaggerAgony
     shoes: CP14ClothingShoesSandals
 
 - type: startingGear
@@ -90,7 +90,7 @@
     pants: CP14ClothingPantsBrown
     neck: CP14BowCombat
     belt1: CP14ClothingBeltQuiverIronArrow
-    belt2: CP14ModularSkeletonSword
+    belt: CP14ModularSkeletonSword
     shoes: CP14LongLeatherBoots
 
 - type: startingGear

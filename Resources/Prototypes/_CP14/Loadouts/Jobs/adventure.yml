@@ -13,7 +13,7 @@
   id: CP14ModularIronSkimitar
   dummyEntity: CP14ModularIronSkimitar
   equipment:
-    belt2: CP14ModularIronSkimitar
+    belt: CP14ModularIronSkimitar
   skills:
   - SkimitarMastery
 
@@ -21,7 +21,7 @@
   id: CP14ModularIronSword
   dummyEntity: CP14ModularIronSword
   equipment:
-    belt2: CP14ModularIronSword
+    belt: CP14ModularIronSword
   skills:
   - SwordMastery
 
@@ -29,7 +29,7 @@
   id: CP14ModularIronRapier
   dummyEntity: CP14ModularIronRapier
   equipment:
-    belt2: CP14ModularIronRapier
+    belt: CP14ModularIronRapier
   skills:
   - RapierMastery
 
@@ -37,5 +37,5 @@
   id: CP14BowCombat
   dummyEntity: CP14BowCombat
   equipment:
-    belt2: CP14ClothingBeltQuiverCopperArrow
+    belt: CP14ClothingBeltQuiverCopperArrow
     neck: CP14BowCombat

@@ -37,7 +37,7 @@
     - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt1" ]
-    - map: [ "belt2" ]
+    - map: [ "belt" ]
     - map: [ "neck" ]
     - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

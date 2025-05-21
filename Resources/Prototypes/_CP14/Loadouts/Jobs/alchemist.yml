@@ -45,7 +45,7 @@
   loadouts:
   - CP14ClothingEyesAlchemyGlasses
   - CP14ClothingEyesAlchemyMonocle
-  
+
 - type: loadout
   id: CP14ClothingEyesAlchemyGlasses
   equipment:
@@ -67,4 +67,4 @@
 - type: loadout
   id: CP14ClothingBeltPouchPotions
   equipment:
-    belt2: CP14ClothingBeltPouchPotions
+    belt: CP14ClothingBeltPouchPotions

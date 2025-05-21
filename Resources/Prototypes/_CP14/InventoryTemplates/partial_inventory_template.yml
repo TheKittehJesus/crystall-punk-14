@@ -85,7 +85,7 @@
       stripHidden: true
     # Right hand
     # Left hand
-    - name: belt2
+    - name: belt
       slotTexture: belt
       slotFlags: BELT
       slotGroup: MainHotbar
