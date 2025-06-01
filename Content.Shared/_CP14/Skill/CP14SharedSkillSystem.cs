@@ -261,9 +261,6 @@ public abstract partial class CP14SharedSkillSystem : EntitySystem
         {
             TryRemoveSkill(target, skill, component);
         }
-
-        component.LearnedSkills = component.FreeLearnedSkills;
-        component.SkillsSumExperience = 0;
         return true;
     }
 }
